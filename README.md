@@ -158,6 +158,7 @@ class className{
     var variable_local = ""
   }
 }
+```
 #### override : 상속해주는 곳에 open을 적어줘야 함
 ```kotlin
 // 상속받으면 부모클래스의 프로퍼티와 매서드를 내 것처럼 사용할 수 있다
@@ -175,6 +176,7 @@ class Child:Parent() { // 클래스 상속시 클래스명 뒤에 :부모() 적�
 }
 ```
 #### overload
+```kotlin
 class Son{
     fun getNumber():Int{
         return 1
@@ -183,3 +185,4 @@ class Son{
         return 2
     }
 }
+```
