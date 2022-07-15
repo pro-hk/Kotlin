@@ -14,7 +14,7 @@ var byteVal:Byte = 127
 
 // 문자형
 var charVal:Char = 'a'  // ''
-var stringVal:String = "문자형 길이에 상관없이 값을 입력할 수 있다"  // ""
+var stringVal:String = "문자형 길이에 상관없이 값을 입력할 수 있다"  // "" - 기본형 아님
 
 // boolean형
 var booleanVal:Boolean = true
@@ -27,11 +27,28 @@ val PI = 3.141592
 ```kotlin
 var myName = "prohk"
 ```
+### null safety - null이 있어도 안전하다
+#### nullable : 변수명:타입? = null
+```kotlin
+var number:Int? = null
+```
+#### Safe Call : 변수명?. - null일 경우 null 출력, 뒤에 ?:값 입력 시 null 값 대체
+```kotlin
+var length = number?.length ?: 10 // number가 null일 경우 10, null이 아닌 경우 length 출력
+```
+### 늦은 초기화 - 변수 선언 후 초기화시 null로 선언할 필요가 없을 때 사용
+#### lateinit : lateinit var 변수명:타입 - 초기에 null을 지정하지 않고 초기화, var만 가능(나중에 선언해야되니까 val(상수 안됨)), 기본형만 가능(String 안됨)
+```kotlin
+lateinit var number:Int
+```
+#### lazy : val 변수명:타입 by lazy { 초기화 코드 } - val만 가능, 선언 후 바로 초기화(호출 시점에서 초기화 -> 늦은 초기화)
+```kotlin
+val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+```
 ### Log.d(tag, msg) : Logcat에서 확인 가능 / tag 검색 가능
 ```kotlin
 Log.d("tag","msg")
 ```
-
 ## 2. view binding - xml내 ID 연결
 ```kotlin
 // build.gradle(Module) 추가
