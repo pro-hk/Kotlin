@@ -11,28 +11,31 @@ import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.CompoundButton
+import androidx.core.widget.addTextChangedListener
 import com.prohk.basiclayout.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) { // Entry Point (시작점)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        /*//listener
+        //listener
         val listener = object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 Log.d("리스너","클릭되었습니다.")
             }
         }
-        binding.button41.setOnClickListener(listener)*/
-        /*binding.button41.setOnClickListener{ // 함수가 1개인 경우 가능
+        binding.button41.setOnClickListener(listener)
+        binding.button41.setOnClickListener{ // 함수가 1개인 경우 가능
             Log.d("리스너","클릭되었습니다.")
-        }*/
+        }
         // res\values\strings 에 저장 -- 다국어 가능
 
-        /*val listener = object : TextWatcher{
+        // editText
+        val editlistener = object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -45,8 +48,13 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        binding.editText.addTextChangedListener(listener)*/
-
+        binding.editText.addTextChangedListener(editlistener)
+        /*binding.editText.addTextChangedListener {
+            Log.d("리스너","입력된 값 = ${it.toString()}")
+            binding.textView4.text = it.toString()
+        }*/
+        
+        // 라디오
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId -> // checkedId : Integer
             when(checkedId){
                 R.id.radioApple -> Log.d("리스너","사과가 선택되었습니다") // R에서 id 값을 가져옴
@@ -55,11 +63,47 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // 체크박스
+        val checkBoxListener = CompoundButton.OnCheckedChangeListener { compoundButton, b ->
+            when(compoundButton.id){
+                R.id.checkApple -> {
+                    if(b) Log.d("체크박스","사과가 선택되었습니다.")
+                    else Log.d("체크박스","사과가 선택해제되었습니다.")
+                }
+                R.id.checkBanana -> {
+                    if (b) Log.d("체크박스", "바나나가 선택되었습니다.")
+                    else Log.d("체크박스", "바나나가 선택해제되었습니다.")
+                }
+                R.id.checkOrange -> {
+                    if (b) Log.d("체크박스", "오렌지가 선택되었습니다.")
+                    else Log.d("체크박스", "오렌지가 선택해제되었습니다.")
+                }
+            }
+        }
+        with(binding){
+            checkApple.setOnCheckedChangeListener(checkBoxListener)
+            checkBanana.setOnCheckedChangeListener(checkBoxListener)
+            checkOrange.setOnCheckedChangeListener(checkBoxListener)
+            /*checkApple.setOnCheckedChangeListener { compoundButton, b ->
+                if(b) Log.d("체크박스","사과가 선택되었습니다.")
+                else Log.d("체크박스","사과가 선택해제되었습니다.")
+            }
+            checkBanana.setOnCheckedChangeListener { compoundButton, b ->
+                if(b) Log.d("체크박스","바나나가 선택되었습니다.")
+                else Log.d("체크박스","바나나가 선택해제되었습니다.")
+            }
+            checkOrange.setOnCheckedChangeListener { compoundButton, b ->
+                if(b) Log.d("체크박스","오렌지가 선택되었습니다.")
+                else Log.d("체크박스","오렌지가 선택해제되었습니다.")
+            }*/
+        }
+
         // Activity 이동
         binding.button41.setOnClickListener {
             val intent = Intent(this, SubActivity::class.java)
             // subActivity로 값 전달
             intent.putExtra("param","실제 값")
+            intent.putExtra("param1",2022)
             // 전달만 할 경우 startActivity
             startActivityForResult(intent,REQ_SUB)
         }
@@ -82,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.button.setOnClickListener {
-            val intent = Intent(this,RecyclerView::class.java)
+            // val intent = Intent(this,Recycler::class.java)
             startActivity(intent)
         }
 

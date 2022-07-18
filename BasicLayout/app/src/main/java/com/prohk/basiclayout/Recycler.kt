@@ -6,7 +6,7 @@ import android.os.Bundle
 class Recycler : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recycler_view)
+        setContentView(R.layout.activity_recycler)
     }
 
     fun loadData():MutableList<Memo> {

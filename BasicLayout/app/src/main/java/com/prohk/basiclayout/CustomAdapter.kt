@@ -19,7 +19,7 @@ class CustomAdapter : RecyclerView.Adapter<Holder>() {
     }
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val memo = listData.get(position)
-        holder.setMemo(memo)
+        // holder.setMemo(memo)
     }
     override fun getItemCount(): Int {
         return listData.size
@@ -27,13 +27,13 @@ class CustomAdapter : RecyclerView.Adapter<Holder>() {
 }
 
 class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun setMemo(memo: Memo) {
+    /*fun setMemo(memo: Memo) {
         itemView.textNo.text = "${memo.no}"
         itemView.textTitle.text = memo.title
 
         val sdf = SimpleDateFormat("yyyy/MM/dd")
         sdf.format(memo.timestamp)
         itemView.textDate.text = sdf
-    }
+    }*/
 
 }
