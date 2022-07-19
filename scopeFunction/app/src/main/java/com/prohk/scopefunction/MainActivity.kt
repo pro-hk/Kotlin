@@ -46,24 +46,25 @@ class MainActivity : AppCompatActivity() {
             persons.add(Person("Scott","010-1234-5678",20))
             persons.add(Person("Scott","010-1234-5678",20))
             persons.add(Person("Scott","010-1234-5678",20))
+            persons.size
         }
         Log.d("스코프함수","resultLet = $resultLet")
 
-        /*val resultApply = seoulPeople.persons.apply {
+        val resultApply = seoulPeople.persons.apply {
             add(Person("Scott","010-1234-5678",20))
             add(Person("Kelly","010-2345-6789",21))
             add(Person("Michael","010-3456-7890",22))
             11
         }
-        Log.d("스코프함수","resultApply = $resultApply")*/
+        Log.d("스코프함수","resultApply = $resultApply")
 
-        /*val resultAlso = seoulPeople.persons.also {
+        val resultAlso = seoulPeople.persons.also {
             it.add(Person("Scott","010-1234-5678",19))
             it.add(Person("Kelly","010-1234-5678",20))
             it.add(Person("Michael","010-1234-5678",21))
             12
         }
-        Log.d("스코프함수","resultAlso = $resultAlso")*/
+        Log.d("스코프함수","resultAlso = $resultAlso")
     }
 }
 

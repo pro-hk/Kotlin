@@ -1,5 +1,6 @@
 package com.prohk.basiclayout
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,9 +26,10 @@ class SubActivity : AppCompatActivity() {
 
         binding.btnReturn.setOnClickListener {
             val intent = Intent()
-            intent.putExtra("param2","돌려드립니다")
-            setResult(RESULT_OK,intent)
-            finish() // intent 닫아줘야함
+            val message = binding.editMsg.text.toString()
+            intent.putExtra("param2",message)
+            setResult(Activity.RESULT_OK,intent)
+            finish() // activity 닫아줘야함
         }
 
         // 토글, 스위치

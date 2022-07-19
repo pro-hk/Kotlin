@@ -8,11 +8,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Adapter
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.CompoundButton
+import android.widget.*
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.RecyclerView
 import com.prohk.basiclayout.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("리스너","입력된 값 = ${it.toString()}")
             binding.textView4.text = it.toString()
         }*/
-        
+
         // 라디오
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId -> // checkedId : Integer
             when(checkedId){
@@ -122,12 +120,11 @@ class MainActivity : AppCompatActivity() {
                 binding.textView.text = selectedValue
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
-
         }
 
-        binding.button.setOnClickListener {
-            // val intent = Intent(this,Recycler::class.java)
-            startActivity(intent)
+        binding.recycleButton.setOnClickListener {
+            val intent2 = Intent(this, RecyclerView.Recycler::class.java)
+            startActivity(intent2)
         }
 
     }
@@ -138,8 +135,11 @@ class MainActivity : AppCompatActivity() {
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
                 REQ_SUB -> {
-                    val returnValue = data?.getStringExtra("param2") ?: "none"
-                    Log.d("서브","돌려받은 값 = $returnValue")
+                    // val returnValue = data?.getStringExtra("param2") ?: "none"
+                    //Log.d("서브","돌려받은 값 = $returnValue")
+                    data?.getStringExtra("param2")?.let{message ->
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

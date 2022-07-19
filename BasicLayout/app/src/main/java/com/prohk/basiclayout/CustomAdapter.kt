@@ -1,39 +1,37 @@
 package com.prohk.basiclayout
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.prohk.basiclayout.databinding.ItemBinding
+import com.prohk.basiclayout.databinding.ItemRecyclerBinding
 import java.text.SimpleDateFormat
 
-// () : 상속, 없으면 인터페이스
-class CustomAdapter : RecyclerView.Adapter<Holder>() {
-
-    val listData = mutableListOf<Memo>()
+class CustomAdapter(val listData:MutableList<Memo>): RecyclerView.Adapter<CustomAdapter.Holder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false)
-
-        return Holder(itemView)
+        val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return Holder(binding)
     }
+
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        // 1. 사용할 데이터를 꺼내고
         val memo = listData.get(position)
-        // holder.setMemo(memo)
+        // 2. 홀더에 데이터를 전달
+        holder.setMemo(memo)
     }
-    override fun getItemCount(): Int {
-        return listData.size
+
+    class Holder(val binding: ItemRecyclerBinding): RecyclerView.ViewHolder(binding.root){
+        // 3. 데이터를 화면에 출력한다
+        fun setMemo(memo:Memo){
+            with(binding){
+                textNo.text = "${memo.no}"
+                textTitle.text = memo.title
+                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                val formattedDate = sdf.format(memo.timestamp)
+                textDate.text = formattedDate
+            }
+        }
     }
-}
 
-class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    /*fun setMemo(memo: Memo) {
-        itemView.textNo.text = "${memo.no}"
-        itemView.textTitle.text = memo.title
-
-        val sdf = SimpleDateFormat("yyyy/MM/dd")
-        sdf.format(memo.timestamp)
-        itemView.textDate.text = sdf
-    }*/
-
+    override fun getItemCount() = listData.size
 }
