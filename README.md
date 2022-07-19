@@ -27,7 +27,11 @@ val PI = 3.141592
 ```kotlin
 var myName = "prohk"
 ```
-### null safety - null이 있어도 안전하다
+### Log.d(tag, msg) : Logcat에서 확인 가능 / tag 검색 가능
+```kotlin
+Log.d("tag","msg")
+```
+## 2. null safety - null이 있어도 안전하다
 #### nullable : 변수명:타입? = null
 ```kotlin
 var number:Int? = null
@@ -45,11 +49,10 @@ lateinit var number:Int
 ```kotlin
 val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 ```
-### Log.d(tag, msg) : Logcat에서 확인 가능 / tag 검색 가능
-```kotlin
-Log.d("tag","msg")
-```
-## 2. view binding - xml내 ID 연결
+## 3. 스코프함수(Scope function) : 지연초기화와 함께 safe call 남용을 막음
+### run, let, apply, also // with
+
+## 4. view binding - xml내 ID 연결
 ```kotlin
 // build.gradle(Module) 추가
 android {
@@ -79,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
-## 3. 문법
+## 5. 문법
 ### 비교연산자 - <, >, <=, >=, ==, != 
 ```kotlin
 val result = 300 < 500
