@@ -178,6 +178,9 @@ class className{
     var variable_local = ""
   }
 }
+
+// data class 클래스명(변수1, 변수2, ..)
+data class className(var no:Int, var title:String)
 ```
 #### override : 상속해주는 곳에 open을 적어줘야 함
 ```kotlin
@@ -206,3 +209,10 @@ class Son{
     }
 }
 ```
+### 6. 레이아웃
+#### res/values 폴더 - 지정해서 사용 가능 - 색상, 크기, 글자(다국어 가능) 등
+#### Constraint Widget 설정 : 마진을 설정하여 화면의 위치 지정 가능
+ - 미지정 시 왼쪽 상단 위치
+ - 화면에서 직접 설정 or Attributes 에서 '+' 키로 선택(가까운 Widget과 연결)
+ - widget의 layout_width를 0dp 설정 시 왼쪽, 오른쪽 마진 제외한 크기로 width 설정
+ - widget의 layout_height를 0dp 설정 시 위쪽, 아래쪽 마진 제외한 크기로 height 설정
